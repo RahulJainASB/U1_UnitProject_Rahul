@@ -1,4 +1,4 @@
-/*
+/* 
 Brick Breaker by Rahul Jain
 This project is the brick breaker game in which a ball is hit by a horizontally moving bat to break bricks.
 */
