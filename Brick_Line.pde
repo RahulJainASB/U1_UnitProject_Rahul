@@ -82,10 +82,13 @@ class Brick_Line
     float ballX         = ball.getX();
     float ballY         = ball.getY();
 
+println("1: Checking ball collision with brick line");
+
     if ( amIVisible == false )
       return collide;
 
-    // check if ball is above or below the brick line. If so, ignore.
+ println("2: Checking ball collision with brick line");
+   // check if ball is above or below the brick line. If so, ignore.
     if ( (abs(y - ballY) > r ) || ((abs( ballY - (y+brickHeight)) > r )) )
     {
       collide = false;
@@ -105,12 +108,12 @@ class Brick_Line
     return collide;
   }
 
-  void  setVisibility(boolean flag)
+  void  setVisibility(boolean f)
   {
-    amIVisible = flag;
+    amIVisible = f;
     for (int i = 0; i < bricks.length; i++)
     {
-      bricks[i].setVisibility(flag);
+      bricks[i].setVisibility(f);
     }
   }
 

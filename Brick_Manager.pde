@@ -92,7 +92,7 @@ class Brick_Manager
 
     for (int i = 0; i < brickLine.length; i++)
     {
-      if ( brickLine[i].amIVisible == true )        // check BrickLine only if it is visible
+      if ( brickLine[i].getVisibility() == true )        // check BrickLine only if it is visible
       {
         collide = brickLine[i].checkBallCollision();
         if ( collide == true )                      // do not check with other brick lines if collided with this brick line. Can only collide with one at a time
@@ -108,8 +108,10 @@ class Brick_Manager
     
     int j = scoreboard.level;
     if( j > brickLine.length)
+    {
       j = brickLine.length;
-      
+    }
+    
     for (int i = 0; i < j; i++)
     {
       if( brickLine[i].getVisibility() == true)

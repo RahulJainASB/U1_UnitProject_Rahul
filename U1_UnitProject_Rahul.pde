@@ -63,9 +63,15 @@ void keyPressed()
 
 void resetGame()
 {
-  ball.reset();
-  scoreboard.reset();
-  brickManager.reset();
+  if (scoreboard.lives < 1 )
+  {
+    exit();
+  }
+  else
+  {
+    ball.reset();
+    brickManager.reset();
+  }
 }
 
 // This function calculates the prependicular distance of a point from a line

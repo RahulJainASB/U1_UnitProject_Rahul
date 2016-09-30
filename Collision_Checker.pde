@@ -15,10 +15,12 @@ class Collision_Checker
     if ( checkWallCollisions() == true)
     {
       collide = true;
-    }    else if ( CheckBrickCollision() == true)
+    }
+    else if ( CheckBrickCollision() == true)
     {
       collide = true;
-    }    else if ( checkBatCollision() == true)
+    }
+    else if ( checkBatCollision() == true)
     {
       collide = true;
     }

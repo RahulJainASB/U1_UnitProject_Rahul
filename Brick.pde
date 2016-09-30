@@ -44,6 +44,8 @@ class Brick
     float ballX         = ball.getX();
     float ballY         = ball.getY();
 
+println("Checking ball collision");
+
     if ( amIVisible() == false )
     {
       return collide;
@@ -70,7 +72,11 @@ class Brick
     }
 
     collide = true;
+   
     counter--;        // this brick has been hit. Count the hit.
+    println("Hit a brick");
+    amIVisible();     // reset the brick visibility
+    
     scoreboard.score++;   // Increment player score.  
     return collide;
   }
@@ -86,9 +92,9 @@ class Brick
     return amIVisible;
   }
   
-  void  setVisibility(boolean flag)
+  void  setVisibility(boolean f)
   {
-    amIVisible = flag;
+    amIVisible = f;
   }
 
   
