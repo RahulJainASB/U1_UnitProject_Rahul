@@ -9,6 +9,7 @@ class Brick
   float   y;
   int     brickWidth;
   int     counter;
+  boolean amIVisible;
 
   // This is the constructer to build the brick
   Brick()
@@ -17,6 +18,7 @@ class Brick
     y               = 200;
     brickWidth      = 150;
     counter         = 1;
+    amIVisible      = false;
   }
 
   void draw()
@@ -69,19 +71,25 @@ class Brick
 
     collide = true;
     counter--;        // this brick has been hit. Count the hit.
-    player.score++;   // Increment player score.  
+    scoreboard.score++;   // Increment player score.  
     return collide;
   }
 
   // Returns true if this brick is visible, if not, false
   boolean amIVisible()
   {
-    if ( counter == 0 )
+    if( amIVisible == true )
     {
-      return false;
-    } else 
-    {
-      return true;
+      if( counter == 0)
+        amIVisible = false;
     }
+    return amIVisible;
   }
+  
+  void  setVisibility(boolean flag)
+  {
+    amIVisible = flag;
+  }
+
+  
 } //end of class

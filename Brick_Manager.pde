@@ -17,14 +17,22 @@ class Brick_Manager
       brickLine[i] = new Brick_Line();
     }
     setBrickLinesPositions();
+    
+    reset();
+  }
+  
+  void reset()
+  {
     setBrickLinesColor();
+    setBrickLinesVisibility();
   }
 
   void draw()
   {
     for (int i = 0; i < brickLine.length; i++)
     {
-      brickLine[i].draw();
+      if( brickLine[i].amIVisible == true)
+        brickLine[i].draw();
     }
   }
 
@@ -55,6 +63,28 @@ class Brick_Manager
     }
   }
 
+  void setBrickLinesVisibility()
+  {
+    // set how many brick lines will be visible depending on the level
+    for (int i = 0; i < brickLine.length; i++)
+    {
+      if( i < scoreboard.level )
+        brickLine[i].setVisibility(true);
+      else
+        brickLine[i].setVisibility(false);
+    }
+    
+    // Set how many hits it will take to break the brick
+    if(scoreboard.level > 5)
+    {
+      for (int i = 0; i < brickLine.length; i++)
+      {
+        int j = scoreboard.level - 5;
+        brickLine[i].setBricksStrength(j);
+      }
+    }    
+  }
+
 
   boolean checkBallCollision()
   {
@@ -71,4 +101,29 @@ class Brick_Manager
     }
     return collide;
   }
+  
+  void checkAndUpdateGameLevel()
+  {
+    boolean increaseLevel = true;
+    
+    int j = scoreboard.level;
+    if( j > brickLine.length)
+      j = brickLine.length;
+      
+    for (int i = 0; i < j; i++)
+    {
+      if( brickLine[i].getVisibility() == true)
+      {
+        increaseLevel = false;
+        break;
+      }
+    }
+    
+    if( increaseLevel == true )
+    {
+      scoreboard.level++;
+      setBrickLinesVisibility();
+    }
+  }
+  
 } // end of class

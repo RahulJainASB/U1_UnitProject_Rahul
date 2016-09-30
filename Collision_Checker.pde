@@ -15,13 +15,19 @@ class Collision_Checker
     if ( checkWallCollisions() == true)
     {
       collide = true;
-    } else if ( CheckBrickCollision() == true)
+    }    else if ( CheckBrickCollision() == true)
     {
       collide = true;
-    } else if ( checkBatCollision() == true)
+    }    else if ( checkBatCollision() == true)
     {
       collide = true;
     }
+    
+    if( collide == true)
+    {
+      brickManager.checkAndUpdateGameLevel();
+    }
+    
     return collide;
   }
 
@@ -47,7 +53,7 @@ class Collision_Checker
       collide = true;
     } else if ( (wallBottomY - ballY) < r)  // checking collision with bottom wall i.e. the ball did not hit the bat and fell down
     {
-      player.lives--;
+      scoreboard.lives--;
       resetGame();
     }
     return collide;

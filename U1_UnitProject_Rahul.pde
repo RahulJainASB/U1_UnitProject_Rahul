@@ -4,12 +4,13 @@ This project is the brick breaker game in which a ball is hit by a horizontally 
 */
 
 
-Frame frame;
-Bat bat;
-Scoreboard scoreboard;
-Brick_Manager brickManager;
-Ball ball;
-Collision_Checker collisionChecker;
+Frame              frame;
+Bat                bat;
+Scoreboard         scoreboard;
+Brick_Manager      brickManager;
+Ball               ball;
+Collision_Checker  collisionChecker;
+boolean            autoGame = true;
 
 void setup()
 {
@@ -18,12 +19,13 @@ void setup()
   frame = new Frame();
   frame.initialize();
 
-  bat = new Bat();
-  scoreboard = new Scoreboard();
-  ball = new Ball();
-
-  brickManager = new Brick_Manager();
+  bat              = new Bat();
+  scoreboard       = new Scoreboard();
+  ball             = new Ball();
+  brickManager     = new Brick_Manager();
   collisionChecker = new Collision_Checker();
+  
+  resetGame();
 }
 
 void draw() 
@@ -31,12 +33,15 @@ void draw()
   background(124);
   frame.draw();
   bat.draw();
-  player.draw();
+  scoreboard.draw();
   brickManager.draw();
   ball.draw();
 
   ball.move();
   collisionChecker.check();
+  
+  if(autoGame == true)
+    bat.autoMove();
 }
 
 
@@ -58,7 +63,9 @@ void keyPressed()
 
 void resetGame()
 {
-  ball.restart();
+  ball.reset();
+  scoreboard.reset();
+  brickManager.reset();
 }
 
 // This function calculates the prependicular distance of a point from a line

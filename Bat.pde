@@ -51,6 +51,13 @@ class Bat
     }
   }
 
+  void autoMove()
+  {
+    float x1 = ball.x;    
+    x = x1 - (batWidth/2);
+    if( x < 0 )
+      x = 0;
+  }
 
   float getTopLeftX()
   {

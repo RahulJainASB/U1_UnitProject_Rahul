@@ -14,14 +14,20 @@ class Ball
   // This is the constructer to build the brick
   Ball()
   {
+    reset();
+  }
+  // Reset the ball position
+  void reset()
+  {
     x               = 500;
     y               = 500;
     r               = 30;
-    xSpeed          = 5;
-    ySpeed          = 5; 
+    xSpeed          = 25;
+    ySpeed          = 50; 
     xDirection      = 1;
     yDirection      = -1;
   }
+
 
   void draw()
   {
@@ -47,15 +53,6 @@ class Ball
   int getRadius()
   {
     return r;
-  }
-
-  // Restart the ball position
-  void restart()
-  {
-    x               = 500;
-    y               = 500;
-    xDirection      = 1;
-    yDirection      = -1;
   }
 
 

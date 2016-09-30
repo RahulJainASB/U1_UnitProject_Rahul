@@ -35,7 +35,6 @@ class Brick_Line
     {
       bricks[i].draw();
     }
-    amIVisible = true;                        // Set the visibility flag of this brickLine
   }
 
 
@@ -58,6 +57,16 @@ class Brick_Line
       bricks[i].setBrickPosition(brickX, brickY, brickWidth);
     }
   }
+
+
+  void setBricksStrength(int j)
+  {    
+    for ( int i = 0; i < bricks.length; i++)
+    {
+      bricks[i].counter = j;
+    }
+  }
+
 
   void setColor(int r, int g, int b)
   {
@@ -92,11 +101,20 @@ class Brick_Line
         }
       }
     }
-    setBrickLineVisibility();
+    checkAndResetVisibility();
     return collide;
   }
 
-  void setBrickLineVisibility()
+  void  setVisibility(boolean flag)
+  {
+    amIVisible = flag;
+    for (int i = 0; i < bricks.length; i++)
+    {
+      bricks[i].setVisibility(flag);
+    }
+  }
+
+  void checkAndResetVisibility()
   {
     if (amIVisible == true )    // if brickLine is not visible, then don't check
     {
@@ -111,4 +129,12 @@ class Brick_Line
       }
     }
   }
+  
+  boolean  getVisibility()
+  {
+    return amIVisible;
+  }
+  
+  
+  
 } // End of class
