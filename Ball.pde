@@ -38,8 +38,10 @@ class Ball
   // Move the ball
   void move()
   {
-    x += xSpeed * xDirection;
-    y += ySpeed * yDirection;
+//    if(scoreboard.level < 2 )
+      moveLinearly();
+//    else
+//      moveSecondDegree();  
   }
 
   float getX()
@@ -78,4 +80,54 @@ class Ball
     }
     return 0;
   }
+  
+  void moveLinearly()
+  {
+    x += xSpeed * xDirection;
+    y += ySpeed * yDirection;
+  }
+  
+  void moveSecondDegree()
+  {
+    /*
+    float beginX = x;
+    float beginY = y;
+    float newX = x;
+    float newY = y;
+    float direction = xDirection;
+    float exponent = 0.5;
+    
+    float pct = xSpeed * direction;
+    if( (pct > 1.0) || (pct < 0.0) )
+      direction = direction * -1;
+  
+    if( direction == 1)
+    {
+        newX = beginX + (pct * xSpeed);
+        float e   = pow(pct, exponent);
+        newY = beginY + (e * ySpeed);
+    }
+    else
+    {
+        newX = beginX + (pct * xSpeed);
+        float e   = pow((1.0 - pct), exponent);
+        newY = beginY + (e * -1 * ySpeed) + ySpeed;
+    }
+    x = newX;
+    y = newY;
+    */
+  
+  
+  
+    x += xSpeed * xDirection;
+    //y += ySpeed * yDirection;
+
+//  float n = norm(x, frame.getLeftX(), frame.getRightX());
+  float newYSpeed = pow(xSpeed, 1.5);
+//  y = frame.getRightX() * yDirection;
+    y += ySpeed * yDirection;
+  }
+  
+  
+  
 } //end of class Ball
