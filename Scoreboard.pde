@@ -30,7 +30,7 @@ class Scoreboard
   void reset()
   {
     score     = 0;
-    level     = 5; //1;
+    level     = 6; //5; //1;
     lives     = 3;    
   }
 }

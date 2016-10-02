@@ -18,10 +18,10 @@ class Brick_Manager
     }
     setBrickLinesPositions();
     setBrickLinesColor();
-    
+
     reset();
   }
-  
+
   void reset()
   {
     setBrickLinesVisibility();
@@ -31,7 +31,7 @@ class Brick_Manager
   {
     for (int i = 0; i < brickLine.length; i++)
     {
-      if( brickLine[i].amIVisible == true)
+      if ( brickLine[i].amIVisible == true)
         brickLine[i].draw();
     }
   }
@@ -68,73 +68,73 @@ class Brick_Manager
     // set how many brick lines will be visible depending on the level
     for (int i = 0; i < brickLine.length; i++)
     {
-      if( i < scoreboard.level )
+      if ( i < scoreboard.level )
         brickLine[i].setVisibility(true);
       else
         brickLine[i].setVisibility(false);
     }
-    
+
     // Set how many hits it will take to break the brick
-    if(scoreboard.level > 5)
-    {
-      int j = scoreboard.level - 4;
-      for (int i = 0; i < brickLine.length; i++)
-      {
-        println("Setting brick strength: ", j);
-        brickLine[i].setBricksStrength(j);
-      }
-    }    
-  }
-
-
-
-  // Checks if the ball collides with the bricks and updates the scoreboard
-  boolean checkBallCollision()
-  {
-    boolean collide = false;
-
+    int hitCount = scoreboard.level - 4;
+    if ( hitCount < 1 )
+      hitCount = 1;
     for (int i = 0; i < brickLine.length; i++)
     {
-      if ( brickLine[i].getVisibility() == true )        // check BrickLine only if it is visible
-      {
-        collide = brickLine[i].checkBallCollision();
-        if ( collide == true )                      // do not check with other brick lines if collided with this brick line. Can only collide with one at a time
-          break;
-      }
+      //println("Setting brick strength: ", j);
+      brickLine[i].setBricksStrength(hitCount);
     }
-    return collide;
   }
-  
-  
-  
-  
-  
-  
-  
-  void checkAndUpdateGameLevel()
+
+
+
+
+// Checks if the ball collides with the bricks and updates the scoreboard
+boolean checkBallCollision()
+{
+  boolean collide = false;
+
+  for (int i = 0; i < brickLine.length; i++)
   {
-    boolean increaseLevel = true;    // initialized value
-    
-    int j = scoreboard.level;        // check the lines based on the level
-    if( j > brickLine.length)        // if level is more than brickline, then reset j to brickline's length
+    if ( brickLine[i].getVisibility() == true )        // check BrickLine only if it is visible
     {
-      j = brickLine.length;
-    }
-    
-    for (int i = 0; i < j; i++)
-    {
-      if( brickLine[i].getVisibility() == true)
-      {
-        increaseLevel = false;
+      collide = brickLine[i].checkBallCollision();
+      if ( collide == true )                      // do not check with other brick lines if collided with this brick line. Can only collide with one at a time
         break;
-      }
-    }
-    
-    if( increaseLevel == true )
-    {
-      scoreboard.level++;
-      reset();
     }
   }
-  
+  return collide;
+}
+
+
+
+
+
+
+
+void checkAndUpdateGameLevel()
+{
+  boolean increaseLevel = true;    // initialized value
+
+  int j = scoreboard.level;        // check the lines based on the level
+  if ( j > brickLine.length)        // if level is more than brickline, then reset j to brickline's length
+  {
+    j = brickLine.length;
+  }
+
+  for (int i = 0; i < j; i++)
+  {
+    if ( brickLine[i].getVisibility() == true)
+    {
+      increaseLevel = false;
+      break;
+    }
+  }
+
+  if ( increaseLevel == true )
+  {
+    scoreboard.level++;
+    reset();
+  }
+}
+
 } // end of class

@@ -106,7 +106,7 @@ class Brick
       ball.yDirection = -ball.yDirection;
     }
 
-    println("Brick hit: ", sideCollided);
+    //println("Brick hit: ", sideCollided);
     
 /*
 

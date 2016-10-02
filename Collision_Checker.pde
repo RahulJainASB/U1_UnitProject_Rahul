@@ -12,7 +12,7 @@ class Collision_Checker
   {
     boolean collide = false;
 
-    if ( checkBatCollision() == true)    // Checks collision with the bat
+    if ( bat.checkBallCollision() == true)    // Checks collision with the bat
     {
       collide = true;
     }
@@ -43,72 +43,7 @@ class Collision_Checker
     return collide;
   }
 
-  boolean checkBatCollision()
-  {
 
-    boolean collide = false;
-    float batLeftX      = bat.getTopLeftX();
-    float batRightX     = bat.getBottomRightX();
-    float batY          = bat.getTopLeftY();
-    int r               = ball.getRadius();
-    float ballX         = ball.getX();
-    float ballY         = ball.getY();
-
-
-    int sideCollided = 0;
-    
-    if( checkRectCircleCollision(  bat.getTopLeftX(), bat.getTopLeftY(), bat.getBottomRightX(), bat.getBottomRightY(),   ballX, ballY, r) == true )
-    {
-      sideCollided = getRectCircleSideCollided(bat.getTopLeftX(), bat.getTopLeftY(), bat.getBottomRightX(), bat.getBottomRightY(),   ballX, ballY, r);
-    }
-    
-
-    if ( sideCollided == 0 )
-    {
-      return false;
-    } else if ( sideCollided == 1 )
-    {
-      ball.xDirection = -ball.xDirection;
-      //println("Left of bat");
-    } else if ( sideCollided == 2 )
-    {
-      ball.yDirection = -ball.yDirection;
-      //println("Top of bat");
-    } else if ( sideCollided == 3 )
-    {
-      ball.xDirection = -ball.xDirection;
-      //println("Right of bat");
-    } else if ( sideCollided == 4 )
-    {
-      ball.yDirection = -ball.yDirection;
-      //println("Bottom of bat");
-    } else if ( sideCollided == 5 )
-    {
-      ball.xDirection = -ball.xDirection;
-      ball.yDirection = -ball.yDirection;
-      println("top Left corner of bat");
-    } else if ( sideCollided == 6 )
-    {
-      ball.xDirection = -ball.xDirection;
-      ball.yDirection = -ball.yDirection;
-      println("top Right corner of bat");
-    } else if ( sideCollided == 7 )
-    {
-      ball.xDirection = -ball.xDirection;
-      ball.yDirection = -ball.yDirection;
-      println("bottom Right corner of bat");
-    } else if ( sideCollided == 8 )
-    {
-      ball.xDirection = -ball.xDirection;
-      ball.yDirection = -ball.yDirection;
-      println("bottom Left corner of bat");
-    }
-
-
-  
-    return true;
-  }
-  
   
   void checkGiftsCollision()
   {

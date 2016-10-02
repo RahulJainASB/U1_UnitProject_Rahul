@@ -164,6 +164,9 @@ class Frame
         ball.xDirection = +1;
         ball.yDirection = -1;
       }
+      
+            ball.move();
+
     }
     return collide;
   }
@@ -193,6 +196,8 @@ class Frame
         ball.xDirection = -1;
         ball.yDirection = -1;
       }
+      
+      ball.move();
     }
     return collide;
   }
