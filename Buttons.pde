@@ -80,24 +80,24 @@ class Button {
       
       if(str.equals("Exit") ) 
       {
-        println("Hit Exit");
+        //println("Hit Exit");
         exit();
       }
        else if (str.equals("Start"))
         {
-          println("Hit Start");
+          //println("Hit Start");
           restartGame();
           gameOn = true;
         }
        else if (str.equals("Auto Off"))
         {
-          println("Hit Auto Off");
+          //println("Hit Auto Off");
           autoPilot = true;
           str = "Auto On";
         }
        else if (str.equals("Auto On"))
         {
-          println("Hit Auto On");
+          //println("Hit Auto On");
           autoPilot = false;
           str = "Auto Off";
         }

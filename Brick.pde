@@ -97,9 +97,9 @@ class Brick
 
     collide = true;
    
-   println("Counter before hit (", x, ", ", y, ") :", counter);
+   //println("Counter before hit (", x, ", ", y, ") :", counter);
     counter--;        // this brick has been hit. Count the hit.
-   println("Counter after hit (", x, ", ", y, ") :", counter);
+   //println("Counter after hit (", x, ", ", y, ") :", counter);
     //println("Hit a brick");
     resetVisibility();     // reset the brick visibility
     

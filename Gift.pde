@@ -38,7 +38,7 @@ class Gift
   void dropLife()
   {
     stroke(255,50);
-    fill(64);
+    fill(128,0,0);
 //    sphere(28);  
     ellipse(x, y, r, r);
     
@@ -47,9 +47,60 @@ class Gift
   
   void dropBomb()
   {
+    stroke(255,50);
+    fill(128,128,0);
+//    sphere(28);  
+    ellipse(x, y, r, r);
+    
+    y = y+10;
   }
   
   void dropScoreBonus()
   {
+    stroke(255,50);
+    fill(128,128,128);
+//    sphere(28);  
+    ellipse(x, y, r, r);
+    
+    y = y+10;
   }
+  
+  boolean checkCollisionWithBat()
+  {
+    boolean collide = checkRectCircleCollision(bat.getTopLeftX(), bat.getTopLeftY(), bat.getBottomRightX(), bat.getBottomRightY(), x, y, r);
+    if( collide == true )
+    {
+      switch(giftType)
+      {
+        case 1:
+        scoreboard.lives++;
+        break;
+        case 2:
+        scoreboard.lives--;
+        break;
+        case 3:
+        default:
+        scoreboard.score = scoreboard.score + (10 * scoreboard.level);
+        break;
+      }
+    }
+    return collide;
+  }
+  
+  boolean checkCollisionWithFloor()
+  {
+    boolean collide     = false;
+    float wallBottomY   = frame.getBottomY();
+    int r               = ball.getRadius();
+    float ballY         = ball.getY();
+
+    if ( ballY >= (wallBottomY - r))  // checking collision with bottom wall i.e. the ball did not hit the bat and fell down
+    {
+      collide = true;
+    }
+    return collide;
+  }
+  
+  
+  
 }

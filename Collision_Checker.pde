@@ -12,18 +12,20 @@ class Collision_Checker
   {
     boolean collide = false;
 
-    if ( checkWallCollisions() == true)          // Checks collision with all the 4 walls
+    if ( checkBatCollision() == true)    // Checks collision with the bat
     {
       collide = true;
     }
-    else if ( CheckBrickCollision() == true)    // Checks collision with the bricks
+    else if ( checkBrickCollision() == true)    // Checks collision with the bricks
     {
       collide = true;
     }
-    else if ( checkBatCollision() == true)    // Checks collision with the bat
+    else if ( checkWallCollisions() == true)          // Checks collision with all the 4 walls
     {
       collide = true;
     }
+    
+    checkGiftsCollision();            // Check collision with Bat or the floor
     
     if( collide == true)
     {
@@ -61,7 +63,7 @@ class Collision_Checker
     return collide;
   }
 
-  boolean CheckBrickCollision()
+  boolean checkBrickCollision()
   {
     boolean collide = false;
     collide = brickManager.checkBallCollision();
@@ -104,4 +106,30 @@ class Collision_Checker
     }
     return true;
   }
+  
+  
+  void checkGiftsCollision()
+  {
+    // As we may have to delete gifts that have hit the bat or floor, loop backwards so items can be removed.
+    for (int i = giftsList.size() - 1; i >= 0; i--) 
+    {
+      Gift g = giftsList.get(i);
+      boolean collide = g.checkCollisionWithBat();
+      
+      if( collide == true)
+      {
+         giftsList.remove(i);
+      }
+      else
+      {
+        collide = g.checkCollisionWithFloor();
+        if( collide == true)
+        {
+         giftsList.remove(i);
+        }
+      }
+    }
+  }
+
+  
 } // end of class

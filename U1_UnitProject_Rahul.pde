@@ -13,7 +13,9 @@ Collision_Checker  collisionChecker;
 Button             exitButton;
 Button             startButton;
 Button             autoPilotButton;
+
 ArrayList<Gift>    giftsList;
+int                giftCounter = 0;
 
 boolean            autoPilot = false;
 boolean            gameOn    = false;
@@ -30,6 +32,7 @@ void setup()
   ball             = new Ball();
   brickManager     = new Brick_Manager();
   collisionChecker = new Collision_Checker();
+  giftsList        = new ArrayList<Gift>();
   
   startButton      = new Button("Start", 100, 20, 150, 50);
   exitButton       = new Button("Exit",  300, 20, 150, 50);
@@ -158,8 +161,22 @@ void showMessage()
 
 void dropGifts()
 {
-  if( scoreboard.score == 5)
+  if( giftCounter == 0)
   {
-    GiftDropper gift = new GiftDropper(1);
+    int giftType = int(random(1,4));
+    giftsList.add(new Gift(giftType));
   }
+  
+  for(int i = 0; i < giftsList.size(); i++)
+    giftsList.get(i).draw();
+
+ giftCounter--;
+
+  // Introduce gifts at random
+  if(giftCounter < 0)
+  {
+    giftCounter = int(random(1000, 5000));
+    giftCounter = giftCounter/scoreboard.level;    // More gifts for higher levels
+  }
+
 }
