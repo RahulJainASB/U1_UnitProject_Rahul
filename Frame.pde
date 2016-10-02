@@ -1,4 +1,4 @@
-//    This is class Frame.                                  //<>// //<>// //<>//
+//    This is class Frame.                              //<>//
 //    It draws the frame and allows it to hit the ball.
 
 class Frame
@@ -136,11 +136,7 @@ class Frame
       {
         ball.xDirection = +1;
         ball.yDirection = +1;
-      } else if ( ballY > ( getBottomY()) - r)     // Check if the ball hit the Bottom Edge
-      {
-        ball.xDirection = +1;
-        ball.yDirection = -1;
-      }
+      } 
 
       ball.move();
     }
@@ -166,10 +162,6 @@ class Frame
       {
         ball.xDirection = -1;
         ball.yDirection = +1;
-      } else if ( ballY > ( getBottomY()) - r)     // Check if the ball hit the Bottom Edge
-      {
-        ball.xDirection = -1;
-        ball.yDirection = -1;
       }
 
       ball.move();
