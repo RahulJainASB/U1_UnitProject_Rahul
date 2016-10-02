@@ -1,5 +1,13 @@
 //    This is class Ball.                                 
 //    It draws and moves the ball.
+//
+//    Ball direction:
+//        Ball going down towards Right:    X: +ve,    Y: +ve
+//        Ball going up   towards Right:    X: +ve,    Y: -ve
+//        Ball going up   towards Left:     X: -ve,    Y: -ve
+//        Ball going down towards Left:     X: -ve,    Y: +ve
+//
+
 
 class Ball
 {

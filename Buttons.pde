@@ -5,7 +5,7 @@ class Button {
   int     rectHeight = 90;     // Diameter of rect
   int     rectWidth  = 150;    // Diameter of rect
   String  str;                 // String to display
-  
+
   color   rectColor, baseColor;
   color   rectHighlight;
   color   currentColor;
@@ -26,7 +26,7 @@ class Button {
 
   void draw() {
     //background(currentColor);
-  
+
     if (rectOver) {
       fill(rectHighlight);
     } else {
@@ -35,27 +35,25 @@ class Button {
     stroke(225);
     strokeWeight(4); 
     rect(rectX, rectY, rectWidth, rectHeight);
-    
+
     writeText();
   }
 
   void writeText()
   {
-    if( rectOver) 
+    if ( rectOver) 
       fill(128);
     else
       fill(255);
     textSize(18);
     text (str, (rectX+50), (rectY+30));
-
   }
-  
+
   // Checks if the mouse is over the button and sets the flag rectOver
   void update(int x, int y) {
     if ( overRect(rectX, rectY, rectWidth, rectHeight) ) {
       rectOver = true;
-    }
-    else {
+    } else {
       rectOver = false;
     }
   }
@@ -64,63 +62,81 @@ class Button {
     //println("Inside  respondMousePressed");
     update(x, y);
 
-/*
+    /*
     if (rectOver) {
-      currentColor = rectColor;      
-    }
-    */
+     currentColor = rectColor;      
+     }
+     */
     return rectOver;
   }
 
-  boolean respondMouseReleased(int x, int y) {
+  boolean respondMouseReleased(int x, int y)
+  {
     //println("Inside  respondMouseReleased");
 
     if (rectOver) {
-   //   currentColor = rectColor;
-      
-      if(str.equals("Exit") ) 
+      //   currentColor = rectColor;
+
+      if (str.equals("Exit") ) 
       {
         //println("Hit Exit");
         exit();
+      } else if (str.equals("Start"))
+      {
+        //println("Hit Start");
+        restartGame();
+        gameOn = true;
+      } else if (str.equals("Auto Off"))
+      {
+        //println("Hit Auto Off");
+        autoPilot = true;
+        str = "Auto On";
+      } else if (str.equals("Auto On"))
+      {
+        //println("Hit Auto On");
+        autoPilot = false;
+        str = "Auto Off";
+      } else
+      {
+        // Testing Bat Edge conditions
+        String s =str.substring(0, 7);
+        //println("Inside Test Bat button: ", s);
+         if (s.equals("Bat Pos"))
+        bat.testBat++;
+        if ( bat.testBat > 3)
+          bat.testBat = 1;
+        switch(bat.testBat) 
+        {
+        case 1: 
+          str = "Bat Pos: Left";
+          break;
+        case 2: 
+          str = "Bat Pos: Middle";
+          break;
+        case 3: 
+          str = "Bat Pos: Right";
+          break;
+        }
       }
-       else if (str.equals("Start"))
-        {
-          //println("Hit Start");
-          restartGame();
-          gameOn = true;
-        }
-       else if (str.equals("Auto Off"))
-        {
-          //println("Hit Auto Off");
-          autoPilot = true;
-          str = "Auto On";
-        }
-       else if (str.equals("Auto On"))
-        {
-          //println("Hit Auto On");
-          autoPilot = false;
-          str = "Auto Off";
-        }
-        
-        
     }
-    rectOver = false;
-    return rectOver;
+
+
+  rectOver = false;
+  return rectOver;
   }
 
 
-  boolean overRect(float x, float y, int width, int height)
+boolean overRect(float x, float y, int width, int height)
+{
+  if (mouseX >= x && mouseX <= x+width && 
+    mouseY >= y && mouseY <= y+height)
   {
-    if (mouseX >= x && mouseX <= x+width && 
-        mouseY >= y && mouseY <= y+height)
-    {
-      return true;
-    }
-    else
-    {
-      return false;
-    }
+    return true;
+  } else
+  {
+    return false;
   }
+}
 
 
 } // end of class

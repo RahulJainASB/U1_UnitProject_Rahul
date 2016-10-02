@@ -10,9 +10,11 @@ Scoreboard         scoreboard;
 Brick_Manager      brickManager;
 Ball               ball;
 Collision_Checker  collisionChecker;
+
 Button             exitButton;
 Button             startButton;
 Button             autoPilotButton;
+Button             testBatButton;
 
 ArrayList<Gift>    giftsList;
 int                giftCounter = 0;
@@ -37,6 +39,8 @@ void setup()
   startButton      = new Button("Start", 100, 20, 150, 50);
   exitButton       = new Button("Exit",  300, 20, 150, 50);
   autoPilotButton  = new Button("Auto Off", 500, 20, 150, 50);
+  testBatButton    = new Button("Bat Pos: Middle", 700, 20, 200, 50);
+  
 }
 
 void draw() 
@@ -47,6 +51,7 @@ void draw()
   startButton.draw();
   exitButton.draw();
   autoPilotButton.draw();
+  testBatButton.draw();
   
   bat.draw();
   scoreboard.draw();
@@ -99,6 +104,10 @@ void mousePressed()
   {
     clicked = autoPilotButton.respondMousePressed(mouseX, mouseY);
   }
+  if( clicked == false)
+  {
+    clicked = testBatButton.respondMousePressed(mouseX, mouseY);
+  }
 
 }
 
@@ -114,6 +123,10 @@ void mouseReleased()
   if( clicked == false)
   {
     clicked = autoPilotButton.respondMouseReleased(mouseX, mouseY);
+  }
+  if( clicked == false)
+  {
+    clicked = testBatButton.respondMouseReleased(mouseX, mouseY);
   }
 }
 

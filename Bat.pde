@@ -9,7 +9,7 @@ class Bat
   int   batWidth;
   int   batHeight;
   
-  int  testBat = 1;
+  int  testBat = 2;      // 1: Left Edge,  2: Middle,  3:  Right Edge
 
   // This is the constructer to build the bat
   Bat()
