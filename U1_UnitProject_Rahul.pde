@@ -54,9 +54,9 @@ void draw()
   
   if( gameOn == true)
   {
+    ball.move();
     ball.draw();
 
-    ball.move();
     collisionChecker.check();
   
     if(autoPilot == true)

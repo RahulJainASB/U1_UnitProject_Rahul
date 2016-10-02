@@ -106,6 +106,8 @@ class Brick
       ball.yDirection = -ball.yDirection;
     }
 
+    println("Brick hit: ", sideCollided);
+    
 /*
 
     int sideCollided = ball.rectCollision( x, y, (x+ brickWidth), (y + brickHeight) );

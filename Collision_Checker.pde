@@ -46,7 +46,7 @@ class Collision_Checker
     float ballX         = ball.getX();
     float ballY         = ball.getY();
 
-
+/*
     if ( ((wallRightX - ballX) < r) || ((ballX - wallLeftX) < r ))  // checking collision with left and right wall
     {
       ball.xDirection = -ball.xDirection;
@@ -60,6 +60,92 @@ class Collision_Checker
       scoreboard.lives--;
       playAgain();
     }
+    
+    */
+    
+    float d = 1;
+    
+    // Left Wall
+    int sideCollided = 0;
+    
+    // Check Left Wall Collision
+    if( checkRectCircleCollision( wallLeftX ,  wallTopY,   (wallLeftX+d), wallBottomY,   ballX, ballY, r) == true )
+    {
+      sideCollided = getRectCircleSideCollided( wallLeftX ,  wallTopY,   (wallLeftX+d), wallBottomY,  ballX, ballY, r);
+      collide = true;
+    }
+    if( (sideCollided == 6) ||  (sideCollided == 7) )
+    {
+      ball.xDirection = -ball.xDirection;
+      ball.yDirection = -ball.yDirection;
+    }
+    if( sideCollided == 3) 
+    {
+      ball.xDirection = -ball.xDirection;
+    }
+    
+ 
+ 
+    // Right Wall
+    if( collide == false )
+    {
+      sideCollided = 0;
+    
+      // Check Right Wall Collision
+      if( checkRectCircleCollision( (wallRightX - d) ,  wallTopY,   wallRightX, wallBottomY,   ballX, ballY, r) == true )
+      {
+        sideCollided = getRectCircleSideCollided( (wallRightX - d) ,  wallTopY,   wallRightX, wallBottomY,   ballX, ballY, r);
+        collide = true;
+      }
+      if( (sideCollided == 5) ||  (sideCollided == 8) )
+      {
+        ball.xDirection = -ball.xDirection;
+        ball.yDirection = -ball.yDirection;
+      }
+      if( sideCollided == 1) 
+      {
+        ball.xDirection = -ball.xDirection;
+      }
+    }
+ 
+ 
+ 
+ 
+     // Top Wall
+    if( collide == false )
+    {
+      sideCollided = 0;
+    
+      // Check Top Wall Collision
+      if( checkRectCircleCollision( wallLeftX ,  wallTopY,   wallRightX,  (wallTopY + d),   ballX, ballY, r) == true )
+      {
+        sideCollided = getRectCircleSideCollided( wallLeftX ,  wallTopY,   wallRightX,  (wallTopY + d),   ballX, ballY, r);
+        collide = true;
+      }
+      if( (sideCollided == 7) ||  (sideCollided == 8) )
+      {
+        ball.xDirection = -ball.xDirection;
+        ball.yDirection = -ball.yDirection;
+      }
+      if( sideCollided == 4) 
+      {
+        ball.yDirection = -ball.yDirection;
+      }
+    }
+
+ 
+     // Bottom floor
+    if( collide == false )
+    {
+      if ( ballY >= wallBottomY)  // checking collision with bottom wall i.e. the ball did not hit the bat and fell down
+      {
+        scoreboard.lives--;
+        playAgain();
+        collide = true;
+      }
+    }
+ 
+    
     return collide;
   }
 
@@ -129,6 +215,17 @@ class Collision_Checker
       ball.xDirection = -ball.xDirection;
       ball.yDirection = -ball.yDirection;
       println("bottom Left corner of bat");
+    }
+
+
+    // Testing Bat Edge conditions
+    if( sideCollided > 0 )
+    {
+       bat.testBat++;
+       println("1: New Bat Test: ", bat.testBat);
+       if( bat.testBat > 3)
+         bat.testBat = 1;
+    println("2: New Bat Test: ", bat.testBat);
     }
     
     return true;

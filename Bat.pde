@@ -8,13 +8,15 @@ class Bat
   int   xSpeed;
   int   batWidth;
   int   batHeight;
+  
+  int  testBat = 1;
 
   // This is the constructer to build the bat
   Bat()
   {
     batHeight   = 25;
     x           = 500;
-    y           = frame.getBottomY() - batHeight + 2;
+    y           = frame.getBottomY() - batHeight - 2; // + 2;
     xSpeed      = 50;
     batWidth    = 150;
   }
@@ -52,11 +54,25 @@ class Bat
   }
 
   void autoMove()
-  {
-    float x1 = ball.x;    
-    x = x1 - (batWidth/2);
-    if( x < 0 )
-      x = 0;
+  {    
+    if( testBat == 1)
+   {
+     x = ball.x + (ball.r/sqrt(2));  // Testing left edge scenario
+     println("Testing bat left edge");
+   } else if ( testBat == 2)
+   {
+      float x1 = ball.x;    
+      x = x1 - (batWidth/2);
+      if( x < 0 )
+        x = 0;
+     println("Testing bat middle");
+   }
+   else
+   {
+     x = ball.x - batWidth - (ball.r/sqrt(2));  // Testing right edge scenario
+     println("Testing bat right edge");
+   }  
+   
   }
 
   float getTopLeftX()

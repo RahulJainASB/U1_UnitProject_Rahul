@@ -49,8 +49,9 @@ boolean checkRectRectCollision(  float x1, float y1, float x2, float y2,
     // 8:  hit the bottom left edge of the rectangle
     
 //    float rRoot2 = r * sqrt(2);
-      float rRoot2 = r;
-  
+
+  /*
+     float rRoot2 = r;
     if(      pointPointDistance(x1, y1, x, y) <= rRoot2 )           return 5;
     else if( pointPointDistance(x2, y1, x, y) <= rRoot2 )           return 6;
     else if( ((x1 - x) <= r) && (y >= y1) && (y <= y2) && (pointLineDistance( x1, y1, x1, y2, x, y) <= r ))   return 1;            // hit the left side of the rectangle
@@ -60,7 +61,21 @@ boolean checkRectRectCollision(  float x1, float y1, float x2, float y2,
     else if( pointPointDistance(x2, y2, x, y) <= rRoot2 )           return 7;            // this case should not happen; ball should never hit the bottom edge of the bat
     else if( pointPointDistance(x1, y2, x, y) <= rRoot2 )           return 8;            // this case should not happen; ball should never hit the bottom edge of the bat
     else                                                       return 0;            // Failure condition
-  }
+*/
+
+ float r1 = r/sqrt(2);
+
+  if(       pointInsideRect( (x1-r1),   (y1-r1),   x1,         y1,         x, y) == true )      return 5;
+  else if(  pointInsideRect( x2,       (y1-r1),   (x2 + r1),   y1,         x, y) == true )      return 6;
+  else if(  pointInsideRect( x2,       y2,       (x2 + r1),   (y2 + r1),   x, y) == true )      return 7;
+  else if(  pointInsideRect( (x1-r1),   y2,       x1,         (y2 + r1),   x, y) == true )      return 8;
+  else if(  pointInsideRect( (x1-r),   y1,       x1,         y2,           x, y) == true )      return 1;
+  else if(  pointInsideRect( x1,       (y1-r),   x2,         y1,           x, y) == true )      return 2;
+  else if(  pointInsideRect( x2,       y1,       (x2+r),     y2,           x, y) == true )      return 3;
+  else if(  pointInsideRect( x1,       y2,       x2,         (y2+r),       x, y) == true )      return 4;
+  else                                                                                          return 0;            // Failure condition
+  
+}
   
   // This function calculates the prependicular distance of a point from a line
 float pointPointDistance( float x1, float y1, float x0, float y0)
@@ -90,4 +105,29 @@ float pointLineDistance( float x1, float y1, float x2, float y2, float x0, float
     d = abs(a1 - a2) / sqrt(b1);
   }
   return d;
+}
+
+
+boolean  pointInsideRect(float x1, float y1, float x2, float y2, float x, float y)
+{
+  float  xa = x1;
+  float  ya = y1;
+  float  xb = x2;
+  float  yb = y2;  // Point A & B are two diagonal points of rect.
+  
+  if( x2 < x1)
+  {
+    xa = x2; xb = x1;
+  }
+  
+  if( y2 < y1 )
+  {
+    ya = y2; yb = y1;
+  }
+  
+//  if( (x >= xa) && (x <= xb) && (y >= ya) && (y <= yb) )    
+  if( (x > xa) && (x < xb) && (y > ya) && (y < yb) )    
+      return true;
+  else
+      return false;
 }
