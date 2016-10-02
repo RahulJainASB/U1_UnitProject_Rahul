@@ -10,7 +10,12 @@ Scoreboard         scoreboard;
 Brick_Manager      brickManager;
 Ball               ball;
 Collision_Checker  collisionChecker;
-boolean            autoGame = true;
+Button             exitButton;
+Button             startButton;
+Button             autoPilotButton;
+
+boolean            autoPilot = false;
+boolean            gameOn    = false;
 
 void setup()
 {
@@ -24,22 +29,39 @@ void setup()
   ball             = new Ball();
   brickManager     = new Brick_Manager();
   collisionChecker = new Collision_Checker();
+  
+  startButton      = new Button("Start", 100, 20, 150, 50);
+  exitButton       = new Button("Exit",  300, 20, 150, 50);
+  autoPilotButton  = new Button("Auto Off", 500, 20, 150, 50);
 }
 
 void draw() 
 {
   background(124);
   frame.draw();
+  
+  startButton.draw();
+  exitButton.draw();
+  autoPilotButton.draw();
+  
   bat.draw();
   scoreboard.draw();
   brickManager.draw();
-  ball.draw();
-
-  ball.move();
-  collisionChecker.check();
   
-  if(autoGame == true)
-    bat.autoMove();
+  if( gameOn == true)
+  {
+    ball.draw();
+
+    ball.move();
+    collisionChecker.check();
+  
+    if(autoPilot == true)
+      bat.autoMove();
+  }
+  else
+  {
+    showMessage();
+  }
 }
 
 
@@ -59,15 +81,75 @@ void keyPressed()
   }
 }
 
-void resetGame()
+// Responds to mouse pressed
+void mousePressed()
 {
-  if (scoreboard.lives < 1 )
+  //println("Mouse clicked");
+  boolean clicked = startButton.respondMousePressed(mouseX, mouseY);
+  if( clicked == false)
   {
-    //exit();
+    clicked = exitButton.respondMousePressed(mouseX, mouseY);
+  }
+  if( clicked == false)
+  {
+    clicked = autoPilotButton.respondMousePressed(mouseX, mouseY);
+  }
+
+}
+
+// Responds to mouse released
+void mouseReleased()
+{
+  //println("Mouse clicked");
+  boolean clicked = startButton.respondMouseReleased(mouseX, mouseY);
+  if( clicked == false)
+  {
+    clicked = exitButton.respondMouseReleased(mouseX, mouseY);
+  }
+  if( clicked == false)
+  {
+    clicked = autoPilotButton.respondMouseReleased(mouseX, mouseY);
+  }
+}
+
+
+
+
+
+// Continue playing if lives left
+void playAgain()
+{
+  if (scoreboard.lives > 0 )
+  {
+    ball.reset();
   }
   else
   {
-    ball.reset();
-    brickManager.reset();
+    gameOn = false;
+  }
+}
+
+// Restart the game
+void restartGame()
+{
+  scoreboard.reset();
+  brickManager.reset();
+  bat.reset();
+  ball.reset();
+}
+
+void showMessage()
+{
+  if( scoreboard.lives > 0 )
+  {
+    textSize(24);
+    text("Welcome to Brick Braker!", 75, 400);
+    text("Hit Start button to start the game", 75, 500);
+  }
+  else
+  {
+    textSize(24);
+    text("Game Over", 75, 400);
+    text("Hit Start button to play again", 75, 500);
   }
 }

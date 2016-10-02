@@ -76,4 +76,10 @@ class Bat
   {
     return (y + batHeight);
   }
+  
+  void reset()
+  {
+    x           = 500;
+  }
+  
 } // End of Bat class

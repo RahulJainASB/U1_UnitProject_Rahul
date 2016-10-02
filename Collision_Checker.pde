@@ -56,7 +56,7 @@ class Collision_Checker
     } else if ( (wallBottomY - ballY) < r)  // checking collision with bottom wall i.e. the ball did not hit the bat and fell down
     {
       scoreboard.lives--;
-      resetGame();
+      playAgain();
     }
     return collide;
   }
