@@ -35,6 +35,15 @@ class Brick
     y = yPos;
     brickWidth = w;
   }
+  void  setVisibility(boolean f)
+  {
+    amIVisible = f;
+  }
+  void  setStrength(int j)
+  {
+    counter = j;
+  }
+
 
 
   boolean checkBallCollision()
@@ -44,7 +53,7 @@ class Brick
     float ballX         = ball.getX();
     float ballY         = ball.getY();
 
-println("Checking ball collision");
+//println("Checking ball collision");
 
     if ( amIVisible() == false )
     {
@@ -74,8 +83,8 @@ println("Checking ball collision");
     collide = true;
    
     counter--;        // this brick has been hit. Count the hit.
-    println("Hit a brick");
-    amIVisible();     // reset the brick visibility
+    //println("Hit a brick");
+    resetVisibility();     // reset the brick visibility
     
     scoreboard.score++;   // Increment player score.  
     return collide;
@@ -84,18 +93,19 @@ println("Checking ball collision");
   // Returns true if this brick is visible, if not, false
   boolean amIVisible()
   {
-    if( amIVisible == true )
-    {
-      if( counter == 0)
-        amIVisible = false;
-    }
     return amIVisible;
   }
   
-  void  setVisibility(boolean f)
+  // Returns true if this brick is visible, if not, false
+  void resetVisibility()
   {
-    amIVisible = f;
+    if( amIVisible == true )
+    {
+      if( counter < 1)
+        amIVisible = false;
+    }
   }
+  
 
   
 } //end of class

@@ -58,12 +58,20 @@ class Brick_Line
     }
   }
 
-
   void setBricksStrength(int j)
   {    
     for ( int i = 0; i < bricks.length; i++)
     {
-      bricks[i].counter = j;
+      bricks[i].setStrength(j);
+    }
+  }
+
+ void  setVisibility(boolean f)
+  {
+    amIVisible = f;
+    for (int i = 0; i < bricks.length; i++)
+    {
+      bricks[i].setVisibility(f);
     }
   }
 
@@ -75,6 +83,9 @@ class Brick_Line
     bColor = b;
   }
 
+
+
+
   boolean checkBallCollision()
   {
     boolean collide     = false;
@@ -82,18 +93,20 @@ class Brick_Line
     float ballX         = ball.getX();
     float ballY         = ball.getY();
 
-println("1: Checking ball collision with brick line");
+//println("1: Checking ball collision with brick line");
 
-    if ( amIVisible == false )
+    if ( amIVisible == false )          // do not check for collision if this brick line is not visible.
       return collide;
 
- println("2: Checking ball collision with brick line");
+ //println("2: Checking ball collision with brick line");
    // check if ball is above or below the brick line. If so, ignore.
     if ( (abs(y - ballY) > r ) || ((abs( ballY - (y+brickHeight)) > r )) )
     {
       collide = false;
     } else
     {
+ //println("3: Checking ball collision with brick in this line");
+      
       for (int i = 0; i < bricks.length; i++)
       {
         if ( bricks[i].amIVisible() == true )
@@ -108,15 +121,7 @@ println("1: Checking ball collision with brick line");
     return collide;
   }
 
-  void  setVisibility(boolean f)
-  {
-    amIVisible = f;
-    for (int i = 0; i < bricks.length; i++)
-    {
-      bricks[i].setVisibility(f);
-    }
-  }
-
+ 
   void checkAndResetVisibility()
   {
     if (amIVisible == true )    // if brickLine is not visible, then don't check
@@ -126,7 +131,7 @@ println("1: Checking ball collision with brick line");
       {
         if ( bricks[i].amIVisible() == true )
         {      
-          amIVisible = true;
+          amIVisible = true;                // Brick line is visible if any of the brick is visible
           break;
         }
       }

@@ -77,15 +77,17 @@ class Brick_Manager
     // Set how many hits it will take to break the brick
     if(scoreboard.level > 5)
     {
+      int j = scoreboard.level - 5;
       for (int i = 0; i < brickLine.length; i++)
       {
-        int j = scoreboard.level - 5;
         brickLine[i].setBricksStrength(j);
       }
     }    
   }
 
 
+
+  // Checks if the ball collides with the bricks and updates the scoreboard
   boolean checkBallCollision()
   {
     boolean collide = false;
@@ -102,12 +104,18 @@ class Brick_Manager
     return collide;
   }
   
+  
+  
+  
+  
+  
+  
   void checkAndUpdateGameLevel()
   {
-    boolean increaseLevel = true;
+    boolean increaseLevel = true;    // initialized value
     
-    int j = scoreboard.level;
-    if( j > brickLine.length)
+    int j = scoreboard.level;        // check the lines based on the level
+    if( j > brickLine.length)        // if level is more than brickline, then reset j to brickline's length
     {
       j = brickLine.length;
     }
@@ -124,7 +132,7 @@ class Brick_Manager
     if( increaseLevel == true )
     {
       scoreboard.level++;
-      setBrickLinesVisibility();
+      reset();
     }
   }
   

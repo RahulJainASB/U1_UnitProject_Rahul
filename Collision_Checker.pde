@@ -12,15 +12,15 @@ class Collision_Checker
   {
     boolean collide = false;
 
-    if ( checkWallCollisions() == true)
+    if ( checkWallCollisions() == true)          // Checks collision with all the 4 walls
     {
       collide = true;
     }
-    else if ( CheckBrickCollision() == true)
+    else if ( CheckBrickCollision() == true)    // Checks collision with the bricks
     {
       collide = true;
     }
-    else if ( checkBatCollision() == true)
+    else if ( checkBatCollision() == true)    // Checks collision with the bat
     {
       collide = true;
     }
