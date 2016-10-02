@@ -77,9 +77,10 @@ class Brick_Manager
     // Set how many hits it will take to break the brick
     if(scoreboard.level > 5)
     {
-      int j = scoreboard.level - 5;
+      int j = scoreboard.level - 4;
       for (int i = 0; i < brickLine.length; i++)
       {
+        println("Setting brick strength: ", j);
         brickLine[i].setBricksStrength(j);
       }
     }    

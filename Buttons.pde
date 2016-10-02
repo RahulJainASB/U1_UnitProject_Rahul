@@ -32,7 +32,8 @@ class Button {
     } else {
       fill(rectColor);
     }
-    stroke(255);
+    stroke(225);
+    strokeWeight(4); 
     rect(rectX, rectY, rectWidth, rectHeight);
     
     writeText();

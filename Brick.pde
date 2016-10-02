@@ -25,6 +25,21 @@ class Brick
   {
     if ( amIVisible() == true)
     {
+      switch(counter) {
+      case 1: 
+        stroke(100);
+        strokeWeight(1); 
+        break;
+      case 2: 
+        stroke(200);
+        strokeWeight(4); 
+        break;
+      case 3:
+      default:
+        stroke(150);
+        strokeWeight(7); 
+        break;
+      }
       rect(x, y, brickWidth, brickHeight);
     }
   }
@@ -82,7 +97,9 @@ class Brick
 
     collide = true;
    
+   println("Counter before hit (", x, ", ", y, ") :", counter);
     counter--;        // this brick has been hit. Count the hit.
+   println("Counter after hit (", x, ", ", y, ") :", counter);
     //println("Hit a brick");
     resetVisibility();     // reset the brick visibility
     

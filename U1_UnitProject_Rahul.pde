@@ -13,6 +13,7 @@ Collision_Checker  collisionChecker;
 Button             exitButton;
 Button             startButton;
 Button             autoPilotButton;
+ArrayList<Gift>    giftsList;
 
 boolean            autoPilot = false;
 boolean            gameOn    = false;
@@ -57,6 +58,8 @@ void draw()
   
     if(autoPilot == true)
       bat.autoMove();
+      
+      dropGifts();
   }
   else
   {
@@ -68,16 +71,15 @@ void draw()
 // Responds to key presses
 void keyPressed()
 {
-
-  if ( key == CODED) {                  // check if key is CODED. This is for special keys
-    if ( keyCode == LEFT ) {            // if left key is pressed, move left
-      bat.move(true, false);
-    } else if ( keyCode == RIGHT ) {    // if right key is pressed, move right
-      bat.move(false, true);
-    }
-  } else if (key == ENTER || key == RETURN)
+  if( autoPilot == false)
   {
-    //  showInstructions = false;        // This is set to false so that instructions are not showed again
+    if ( key == CODED) {                  // check if key is CODED. This is for special keys
+      if ( keyCode == LEFT ) {            // if left key is pressed, move left
+        bat.move(true, false);
+      } else if ( keyCode == RIGHT ) {    // if right key is pressed, move right
+        bat.move(false, true);
+      }
+    }
   }
 }
 
@@ -151,5 +153,13 @@ void showMessage()
     textSize(24);
     text("Game Over", 75, 400);
     text("Hit Start button to play again", 75, 500);
+  }
+}
+
+void dropGifts()
+{
+  if( scoreboard.score == 5)
+  {
+    GiftDropper gift = new GiftDropper(1);
   }
 }
