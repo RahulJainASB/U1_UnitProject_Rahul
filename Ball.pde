@@ -22,8 +22,8 @@ class Ball
     x               = 500;
     y               = 500;
     r               = 30;
-    xSpeed          = 10; //5;
-    ySpeed          = 10; //5; 
+    xSpeed          = 5; //5;
+    ySpeed          = 5; //5; 
     xDirection      = 1;
     yDirection      = -1;
   }
@@ -56,6 +56,9 @@ class Ball
   }
 
 
+
+/*
+
   // Calculates the intersection of a rectangle with this ball
   int rectCollision(float x1, float y1, float x2, float y2)
   {
@@ -79,7 +82,7 @@ class Ball
     return 0;
   }
 
-  
+  */
   
   
 } //end of class Ball

@@ -31,6 +31,6 @@ class Scoreboard
   {
     score     = 0;
     level     = 5; //1;
-    lives     = 10; //3;    
+    lives     = 3;    
   }
 }

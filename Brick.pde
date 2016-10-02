@@ -74,7 +74,39 @@ class Brick
     {
       return collide;
     }
+    
+    
+    
+    int sideCollided = 0;
+    
+    if( checkRectCircleCollision(   x, y, (x+ brickWidth), (y + brickHeight),    ballX, ballY, r) == true )
+    {
+      sideCollided = getRectCircleSideCollided( x, y, (x+ brickWidth), (y + brickHeight),    ballX, ballY, r);
+    }
+    
+    if ( sideCollided == 0 )
+    {
+      return false;
+    } else if ( sideCollided == 1 )
+    {
+      ball.xDirection = -ball.xDirection;
+    } else if ( sideCollided == 2 )
+    {
+      ball.yDirection = -ball.yDirection;
+    } else if ( sideCollided == 3 )
+    {
+      ball.xDirection = -ball.xDirection;
+    } else if ( sideCollided == 4 )
+    {
+      ball.yDirection = -ball.yDirection;
+    }
+   else if ( (sideCollided == 5 ) || (sideCollided == 6 ) ||(sideCollided == 7 ) || (sideCollided == 8 ) )
+    {
+      ball.xDirection = -ball.xDirection;
+      ball.yDirection = -ball.yDirection;
+    }
 
+/*
 
     int sideCollided = ball.rectCollision( x, y, (x+ brickWidth), (y + brickHeight) );
 
@@ -94,6 +126,8 @@ class Brick
     {
       ball.yDirection = -ball.yDirection;
     }
+*/
+
 
     collide = true;
    
