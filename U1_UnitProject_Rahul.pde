@@ -1,7 +1,7 @@
-/* 
-Brick Breaker by Rahul Jain
-This project is the brick breaker game in which a ball is hit by a horizontally moving bat to break bricks.
-*/
+// 
+//  Brick Breaker by Rahul Jain
+// This project is the brick breaker game in which a ball is hit by a horizontally moving bat to break bricks.
+
 
 
 Frame              frame;
@@ -14,7 +14,7 @@ Collision_Checker  collisionChecker;
 Button             exitButton;
 Button             startButton;
 Button             autoPilotButton;
-Button             testBatButton;
+//Button             testBatButton;
 
 ArrayList<Gift>    giftsList;
 int                giftCounter = 0;
@@ -35,41 +35,39 @@ void setup()
   brickManager     = new Brick_Manager();
   collisionChecker = new Collision_Checker();
   giftsList        = new ArrayList<Gift>();
-  
+
   startButton      = new Button("Start", 100, 20, 150, 50);
-  exitButton       = new Button("Exit",  300, 20, 150, 50);
+  exitButton       = new Button("Exit", 300, 20, 150, 50);
   autoPilotButton  = new Button("Auto Off", 500, 20, 150, 50);
-  testBatButton    = new Button("Bat Pos: Middle", 700, 20, 200, 50);
-  
+  //  testBatButton    = new Button("Bat Pos: Middle", 700, 20, 200, 50);
 }
 
 void draw() 
 {
   background(124);
   frame.draw();
-  
+
   startButton.draw();
   exitButton.draw();
   autoPilotButton.draw();
-  testBatButton.draw();
-  
+  //  testBatButton.draw();
+
   bat.draw();
   scoreboard.draw();
   brickManager.draw();
-  
-  if( gameOn == true)
+
+  if ( gameOn == true)
   {
     ball.move();
     ball.draw();
 
     collisionChecker.check();
-  
-    if(autoPilot == true)
+
+    if (autoPilot == true)
       bat.autoMove();
-      
-      dropGifts();
-  }
-  else
+
+    dropGifts();
+  } else
   {
     showMessage();
   }
@@ -79,7 +77,7 @@ void draw()
 // Responds to key presses
 void keyPressed()
 {
-  if( autoPilot == false)
+  if ( autoPilot == false)
   {
     if ( key == CODED) {                  // check if key is CODED. This is for special keys
       if ( keyCode == LEFT ) {            // if left key is pressed, move left
@@ -96,19 +94,18 @@ void mousePressed()
 {
   //println("Mouse clicked");
   boolean clicked = startButton.respondMousePressed(mouseX, mouseY);
-  if( clicked == false)
+  if ( clicked == false)
   {
     clicked = exitButton.respondMousePressed(mouseX, mouseY);
   }
-  if( clicked == false)
+  if ( clicked == false)
   {
     clicked = autoPilotButton.respondMousePressed(mouseX, mouseY);
   }
-  if( clicked == false)
+  if ( clicked == false)
   {
-    clicked = testBatButton.respondMousePressed(mouseX, mouseY);
+    //clicked = testBatButton.respondMousePressed(mouseX, mouseY);
   }
-
 }
 
 // Responds to mouse released
@@ -116,22 +113,19 @@ void mouseReleased()
 {
   //println("Mouse clicked");
   boolean clicked = startButton.respondMouseReleased(mouseX, mouseY);
-  if( clicked == false)
+  if ( clicked == false)
   {
     clicked = exitButton.respondMouseReleased(mouseX, mouseY);
   }
-  if( clicked == false)
+  if ( clicked == false)
   {
     clicked = autoPilotButton.respondMouseReleased(mouseX, mouseY);
   }
-  if( clicked == false)
+  if ( clicked == false)
   {
-    clicked = testBatButton.respondMouseReleased(mouseX, mouseY);
+    //clicked = testBatButton.respondMouseReleased(mouseX, mouseY);
   }
 }
-
-
-
 
 
 // Continue playing if lives left
@@ -140,8 +134,7 @@ void playAgain()
   if (scoreboard.lives > 0 )
   {
     ball.reset();
-  }
-  else
+  } else
   {
     gameOn = false;
   }
@@ -158,13 +151,12 @@ void restartGame()
 
 void showMessage()
 {
-  if( scoreboard.lives > 0 )
+  if ( scoreboard.lives > 0 )
   {
     textSize(24);
     text("Welcome to Brick Braker!", 75, 400);
     text("Hit Start button to start the game", 75, 500);
-  }
-  else
+  } else
   {
     textSize(24);
     text("Game Over", 75, 400);
@@ -172,24 +164,24 @@ void showMessage()
   }
 }
 
+// Function to create and new gifts
 void dropGifts()
 {
-  if( giftCounter == 0)
+  if ( giftCounter == 0)
   {
-    int giftType = int(random(1,4));
+    int giftType = int(random(1, 4));
     giftsList.add(new Gift(giftType));
   }
-  
-  for(int i = 0; i < giftsList.size(); i++)
+
+  for (int i = 0; i < giftsList.size(); i++)
     giftsList.get(i).draw();
 
- giftCounter--;
+  giftCounter--;
 
   // Introduce gifts at random
-  if(giftCounter < 0)
+  if (giftCounter < 0)
   {
     giftCounter = int(random(1000, 5000));
     giftCounter = giftCounter/scoreboard.level;    // More gifts for higher levels
   }
-
 }

@@ -68,49 +68,17 @@ class Brick
     float ballX         = ball.getX();
     float ballY         = ball.getY();
 
-//println("Checking ball collision");
-
     if ( amIVisible() == false )
     {
       return collide;
     }
-    
-    
-    
+
     int sideCollided = 0;
-    
-    if( checkRectCircleCollision(   x, y, (x+ brickWidth), (y + brickHeight),    ballX, ballY, r) == true )
-    {
-      sideCollided = getRectCircleSideCollided( x, y, (x+ brickWidth), (y + brickHeight),    ballX, ballY, r);
-    }
-    
-    if ( sideCollided == 0 )
-    {
-      return false;
-    } else if ( sideCollided == 1 )
-    {
-      ball.xDirection = -ball.xDirection;
-    } else if ( sideCollided == 2 )
-    {
-      ball.yDirection = -ball.yDirection;
-    } else if ( sideCollided == 3 )
-    {
-      ball.xDirection = -ball.xDirection;
-    } else if ( sideCollided == 4 )
-    {
-      ball.yDirection = -ball.yDirection;
-    }
-   else if ( (sideCollided == 5 ) || (sideCollided == 6 ) ||(sideCollided == 7 ) || (sideCollided == 8 ) )
-    {
-      ball.xDirection = -ball.xDirection;
-      ball.yDirection = -ball.yDirection;
-    }
 
-    //println("Brick hit: ", sideCollided);
-    
-/*
-
-    int sideCollided = ball.rectCollision( x, y, (x+ brickWidth), (y + brickHeight) );
+    if ( checkRectCircleCollision(   x, y, (x+ brickWidth), (y + brickHeight), ballX, ballY, r) == true )
+    {
+      sideCollided = getRectCircleSideCollided( x, y, (x+ brickWidth), (y + brickHeight), ballX, ballY, r);
+    }
 
     if ( sideCollided == 0 )
     {
@@ -127,18 +95,16 @@ class Brick
     } else if ( sideCollided == 4 )
     {
       ball.yDirection = -ball.yDirection;
+    } else if ( (sideCollided == 5 ) || (sideCollided == 6 ) ||(sideCollided == 7 ) || (sideCollided == 8 ) )
+    {
+      ball.xDirection = -ball.xDirection;
+      ball.yDirection = -ball.yDirection;
     }
-*/
-
 
     collide = true;
-   
-   //println("Counter before hit (", x, ", ", y, ") :", counter);
     counter--;        // this brick has been hit. Count the hit.
-   //println("Counter after hit (", x, ", ", y, ") :", counter);
-    //println("Hit a brick");
     resetVisibility();     // reset the brick visibility
-    
+
     scoreboard.score++;   // Increment player score.  
     return collide;
   }
@@ -148,17 +114,14 @@ class Brick
   {
     return amIVisible;
   }
-  
+
   // Returns true if this brick is visible, if not, false
   void resetVisibility()
   {
-    if( amIVisible == true )
+    if ( amIVisible == true )
     {
-      if( counter < 1)
+      if ( counter < 1)
         amIVisible = false;
     }
   }
-  
-
-  
 } //end of class

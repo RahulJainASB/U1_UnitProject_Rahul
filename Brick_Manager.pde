@@ -18,7 +18,6 @@ class Brick_Manager
     }
     setBrickLinesPositions();
     setBrickLinesColor();
-
     reset();
   }
 
@@ -78,63 +77,55 @@ class Brick_Manager
     int hitCount = scoreboard.level - 4;
     if ( hitCount < 1 )
       hitCount = 1;
+
     for (int i = 0; i < brickLine.length; i++)
     {
-      //println("Setting brick strength: ", j);
       brickLine[i].setBricksStrength(hitCount);
     }
   }
 
 
-
-
-// Checks if the ball collides with the bricks and updates the scoreboard
-boolean checkBallCollision()
-{
-  boolean collide = false;
-
-  for (int i = 0; i < brickLine.length; i++)
+  // Checks if the ball collides with the bricks and updates the scoreboard
+  boolean checkBallCollision()
   {
-    if ( brickLine[i].getVisibility() == true )        // check BrickLine only if it is visible
+    boolean collide = false;
+
+    for (int i = 0; i < brickLine.length; i++)
     {
-      collide = brickLine[i].checkBallCollision();
-      if ( collide == true )                      // do not check with other brick lines if collided with this brick line. Can only collide with one at a time
+      if ( brickLine[i].getVisibility() == true )        // check BrickLine only if it is visible
+      {
+        collide = brickLine[i].checkBallCollision();
+        if ( collide == true )                      // do not check with other brick lines if collided with this brick line. Can only collide with one at a time
+          break;
+      }
+    }
+    return collide;
+  }
+
+
+  void checkAndUpdateGameLevel()
+  {
+    boolean increaseLevel = true;    // initialized value
+
+    int j = scoreboard.level;        // check the lines based on the level
+    if ( j > brickLine.length)        // if level is more than brickline, then reset j to brickline's length
+    {
+      j = brickLine.length;
+    }
+
+    for (int i = 0; i < j; i++)
+    {
+      if ( brickLine[i].getVisibility() == true)
+      {
+        increaseLevel = false;
         break;
+      }
     }
-  }
-  return collide;
-}
 
-
-
-
-
-
-
-void checkAndUpdateGameLevel()
-{
-  boolean increaseLevel = true;    // initialized value
-
-  int j = scoreboard.level;        // check the lines based on the level
-  if ( j > brickLine.length)        // if level is more than brickline, then reset j to brickline's length
-  {
-    j = brickLine.length;
-  }
-
-  for (int i = 0; i < j; i++)
-  {
-    if ( brickLine[i].getVisibility() == true)
+    if ( increaseLevel == true )
     {
-      increaseLevel = false;
-      break;
+      scoreboard.level++;
+      reset();
     }
   }
-
-  if ( increaseLevel == true )
-  {
-    scoreboard.level++;
-    reset();
-  }
-}
-
 } // end of class

@@ -8,7 +8,7 @@ class Brick_Line
   boolean         amIVisible;
   float           x;
   float           y;
-  int            rColor, gColor, bColor;
+  int             rColor, gColor, bColor;
 
 
   // This is the constructer to build the brick line
@@ -66,7 +66,7 @@ class Brick_Line
     }
   }
 
- void  setVisibility(boolean f)
+  void  setVisibility(boolean f)
   {
     amIVisible = f;
     for (int i = 0; i < bricks.length; i++)
@@ -83,9 +83,6 @@ class Brick_Line
     bColor = b;
   }
 
-
-
-
   boolean checkBallCollision()
   {
     boolean collide     = false;
@@ -93,20 +90,15 @@ class Brick_Line
     float ballX         = ball.getX();
     float ballY         = ball.getY();
 
-//println("1: Checking ball collision with brick line");
-
     if ( amIVisible == false )          // do not check for collision if this brick line is not visible.
       return collide;
 
- //println("2: Checking ball collision with brick line");
-   // check if ball is above or below the brick line. If so, ignore.
+    // check if ball is above or below the brick line. If so, ignore.
     if ( (abs(y - ballY) > r ) || ((abs( ballY - (y+brickHeight)) > r )) )
     {
       collide = false;
     } else
-    {
- //println("3: Checking ball collision with brick in this line");
-      
+    {      
       for (int i = 0; i < bricks.length; i++)
       {
         if ( bricks[i].amIVisible() == true )
@@ -121,7 +113,7 @@ class Brick_Line
     return collide;
   }
 
- 
+
   void checkAndResetVisibility()
   {
     if (amIVisible == true )    // if brickLine is not visible, then don't check
@@ -137,12 +129,9 @@ class Brick_Line
       }
     }
   }
-  
+
   boolean  getVisibility()
   {
     return amIVisible;
   }
-  
-  
-  
 } // End of class

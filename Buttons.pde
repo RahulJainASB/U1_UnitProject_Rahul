@@ -1,11 +1,12 @@
+// This is the Button class.
+// It is used to draw button and take action when pressed
 
 class Button {
 
   float   rectX, rectY;        // Position of square button
-  int     rectHeight = 90;     // Diameter of rect
-  int     rectWidth  = 150;    // Diameter of rect
+  int     rectHeight;
+  int     rectWidth;
   String  str;                 // String to display
-
   color   rectColor, baseColor;
   color   rectHighlight;
   color   currentColor;
@@ -21,12 +22,12 @@ class Button {
     rectY           = y;
     rectWidth       = w;
     rectHeight      = h;
-    str              = new String(s);
+    str             = new String(s);
+    rectOver        = false;
   }
 
-  void draw() {
-    //background(currentColor);
-
+  void draw() 
+  {
     if (rectOver) {
       fill(rectHighlight);
     } else {
@@ -58,51 +59,36 @@ class Button {
     }
   }
 
-  boolean respondMousePressed(int x, int y) {
-    //println("Inside  respondMousePressed");
+  boolean respondMousePressed(int x, int y) 
+  {
     update(x, y);
-
-    /*
-    if (rectOver) {
-     currentColor = rectColor;      
-     }
-     */
     return rectOver;
   }
 
   boolean respondMouseReleased(int x, int y)
   {
-    //println("Inside  respondMouseReleased");
-
     if (rectOver) {
-      //   currentColor = rectColor;
-
       if (str.equals("Exit") ) 
       {
-        //println("Hit Exit");
         exit();
       } else if (str.equals("Start"))
       {
-        //println("Hit Start");
         restartGame();
         gameOn = true;
       } else if (str.equals("Auto Off"))
       {
-        //println("Hit Auto Off");
         autoPilot = true;
         str = "Auto On";
       } else if (str.equals("Auto On"))
       {
-        //println("Hit Auto On");
         autoPilot = false;
         str = "Auto Off";
       } else
       {
         // Testing Bat Edge conditions
         String s =str.substring(0, 7);
-        //println("Inside Test Bat button: ", s);
-         if (s.equals("Bat Pos"))
-        bat.testBat++;
+        if (s.equals("Bat Pos"))
+          bat.testBat++;
         if ( bat.testBat > 3)
           bat.testBat = 1;
         switch(bat.testBat) 
@@ -120,23 +106,20 @@ class Button {
       }
     }
 
-
-  rectOver = false;
-  return rectOver;
+    rectOver = false;
+    return rectOver;
   }
 
 
-boolean overRect(float x, float y, int width, int height)
-{
-  if (mouseX >= x && mouseX <= x+width && 
-    mouseY >= y && mouseY <= y+height)
+  boolean overRect(float x, float y, int width, int height)
   {
-    return true;
-  } else
-  {
-    return false;
+    if (mouseX >= x && mouseX <= x+width && 
+      mouseY >= y && mouseY <= y+height)
+    {
+      return true;
+    } else
+    {
+      return false;
+    }
   }
-}
-
-
 } // end of class
