@@ -17,13 +17,13 @@ class Brick_Manager
       brickLine[i] = new Brick_Line();
     }
     setBrickLinesPositions();
+    setBrickLinesColor();
     
     reset();
   }
   
   void reset()
   {
-    setBrickLinesColor();
     setBrickLinesVisibility();
   }
 

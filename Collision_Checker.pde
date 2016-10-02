@@ -82,7 +82,13 @@ class Collision_Checker
     float ballY         = ball.getY();
 
 
-    int sideCollided = ball.rectCollision( bat.getTopLeftX(), bat.getTopLeftY(), bat.getBottomRightX(), bat.getBottomRightY() );
+    int sideCollided = 0;
+    
+    if( checkRectCircleCollision(  bat.getTopLeftX(), bat.getTopLeftY(), bat.getBottomRightX(), bat.getBottomRightY(),   ballX, ballY, r) == true )
+    {
+      sideCollided = getRectCircleSideCollided(bat.getTopLeftX(), bat.getTopLeftY(), bat.getBottomRightX(), bat.getBottomRightY(),   ballX, ballY, r);
+    }
+    
 
     if ( sideCollided == 0 )
     {
@@ -103,7 +109,28 @@ class Collision_Checker
     {
       ball.yDirection = -ball.yDirection;
       //println("Bottom of bat");
+    } else if ( sideCollided == 5 )
+    {
+      ball.xDirection = -ball.xDirection;
+      ball.yDirection = -ball.yDirection;
+      println("top Left corner of bat");
+    } else if ( sideCollided == 6 )
+    {
+      ball.xDirection = -ball.xDirection;
+      ball.yDirection = -ball.yDirection;
+      println("top Right corner of bat");
+    } else if ( sideCollided == 7 )
+    {
+      ball.xDirection = -ball.xDirection;
+      ball.yDirection = -ball.yDirection;
+      println("bottom Right corner of bat");
+    } else if ( sideCollided == 8 )
+    {
+      ball.xDirection = -ball.xDirection;
+      ball.yDirection = -ball.yDirection;
+      println("bottom Left corner of bat");
     }
+    
     return true;
   }
   

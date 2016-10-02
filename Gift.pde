@@ -4,7 +4,9 @@ class Gift
 {
   int    giftType;    // 1: Life,  2: Bomb, 3: ScoreBonus
   float  x, y;
-  int    r;
+  //int    r;
+  PImage  im;
+  float   w, h;
   
   Gift(int j)
   {
@@ -12,14 +14,32 @@ class Gift
     if( (giftType < 1) || (giftType > 3) )
       giftType = 1;
       
-    x = random(frame.getLeftX(), frame.getRightX());
+    w = h = 75;
+    x = random((frame.getLeftX()+w), (frame.getRightX()-w));
     y = frame.getTopY();
-    r = 40;
+    
+    //r = 40;
+    
+    switch(giftType)
+    {
+      case 1:
+        im = loadImage("life.jpg");
+        break;
+        case 2:
+        im = loadImage("skull.jpg");
+        break;
+        case 3:
+        default:
+        im = loadImage("money.png");
+        break;
+    }
+ 
 
   }
   
   void draw()
   {
+    /*
     switch(giftType)
     {
       case 1:
@@ -33,8 +53,13 @@ class Gift
         dropScoreBonus();
         break;
     }
+    */
+    
+    image(im, x, y, w, h);
+    y = y + 10;
   }
   
+  /*
   void dropLife()
   {
     stroke(255,50);
@@ -64,10 +89,15 @@ class Gift
     
     y = y+10;
   }
+  */
   
   boolean checkCollisionWithBat()
   {
-    boolean collide = checkRectCircleCollision(bat.getTopLeftX(), bat.getTopLeftY(), bat.getBottomRightX(), bat.getBottomRightY(), x, y, r);
+    //boolean collide = checkRectCircleCollision(bat.getTopLeftX(), bat.getTopLeftY(), bat.getBottomRightX(), bat.getBottomRightY(), x, y, r);
+    boolean collide = checkRectRectCollision(  bat.getTopLeftX(),      bat.getTopLeftY(), 
+                                              bat.getBottomRightX(),   bat.getBottomRightY(), 
+                                                x, y, x+w, y+h);
+    
     if( collide == true )
     {
       switch(giftType)
@@ -91,10 +121,13 @@ class Gift
   {
     boolean collide     = false;
     float wallBottomY   = frame.getBottomY();
-    int r               = ball.getRadius();
-    float ballY         = ball.getY();
+//    int r               = ball.getRadius();
+//    float ballY         = ball.getY();
 
-    if ( ballY >= (wallBottomY - r))  // checking collision with bottom wall i.e. the ball did not hit the bat and fell down
+
+//    if ( ballY >= (wallBottomY - r))  // checking collision with bottom wall i.e. the ball did not hit the bat and fell down
+
+  if( (y+h) >=  wallBottomY)
     {
       collide = true;
     }
