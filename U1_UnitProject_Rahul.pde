@@ -1,7 +1,7 @@
-// 
-//  Brick Breaker by Rahul Jain
-// This project is the brick breaker game in which a ball is hit by a horizontally moving bat to break bricks.
-
+/*
+Brick Breaker by Rahul Jain
+This project is the brick breaker game in which a ball is hit by a horizontally moving bat to break bricks.
+*/
 
 
 Frame              frame;
@@ -154,13 +154,16 @@ void showMessage()
   if ( scoreboard.lives > 0 )
   {
     textSize(24);
-    text("Welcome to Brick Braker!", 75, 400);
-    text("Hit Start button to start the game", 75, 500);
+    text("Welcome to Brick Breaker!", 75, 400);
+    text("Hit the start button to start the game", 75, 475);
+    text("Break the bricks by hitting the ball with the bat", 75, 550);
+    text("Some bricks may require multiple hits", 75, 625);
+    text("Catch the falling hearts to gain lives, avoid the skull or lose lives, and catch the money to get extra points.", 75, 700);
   } else
   {
     textSize(24);
     text("Game Over", 75, 400);
-    text("Hit Start button to play again", 75, 500);
+    text("Hit the start button to play again", 75, 500);
   }
 }
 

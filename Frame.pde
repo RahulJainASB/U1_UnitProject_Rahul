@@ -1,12 +1,12 @@
-//    This is class Frame.                              //<>//
+//    This is class Frame.                                  //<>// //<>// //<>//
 //    It draws the frame and allows it to hit the ball.
 
 class Frame
 {
   float x;
   float y;
-  int frameWidth;
-  int frameHeight;
+  int   frameWidth;
+  int   frameHeight;
 
   // This is the constructer to build the frame
   Frame()
@@ -61,7 +61,7 @@ class Frame
   {
     boolean collide     = false;
 
-    collide = checkTopWallCollision();
+    collide = checkBottomWallCollision();
     if ( collide == false )
     {
       collide = checkLeftWallCollision();
@@ -72,7 +72,7 @@ class Frame
     }
     if ( collide == false )
     {
-      collide = checkBottomWallCollision();
+      collide = checkTopWallCollision();
     } 
     return collide;
   }
@@ -96,7 +96,7 @@ class Frame
   boolean checkTopWallCollision()
   {
     boolean collide     = false;
-    int r               = ball.getRadius();
+    int   radius        = ball.getRadius();
     float ballX         = ball.getX();
     float ballY         = ball.getY();
 
@@ -106,10 +106,10 @@ class Frame
       ball.yDirection = +1;
       collide = true;
 
-      if ( ballX < ( getLeftX()) + r)           // Check if the ball hit the Top Left Edge
+      if ( ballX < ( getLeftX()) + radius)           // Check if the ball hit the Top Left Edge
       {
         ball.xDirection = +1;
-      } else if ( ballX > ( getRightX()) - r)     // Check if the ball hit the Top Right Edge
+      } else if ( ballX > ( getRightX()) - radius)     // Check if the ball hit the Top Right Edge
       {
         ball.xDirection = -1;
       }
@@ -122,9 +122,9 @@ class Frame
   boolean checkLeftWallCollision()
   {
     boolean collide     = false;
-    int r               = ball.getRadius();
-    float ballX         = ball.getX();
-    float ballY         = ball.getY();
+    int     radius      = ball.getRadius();
+    float   ballX       = ball.getX();
+    float   ballY       = ball.getY();
 
     // Left wall
     if ( ballX <= getLeftX())                    // checking collision with left wall
@@ -132,7 +132,7 @@ class Frame
       ball.xDirection = -ball.xDirection;
       collide = true;
 
-      if ( ballY < ( getTopY()) + r)           // Check if the ball hit the Top Left Edge
+      if ( ballY < ( getTopY()) + radius)           // Check if the ball hit the Top Left Edge
       {
         ball.xDirection = +1;
         ball.yDirection = +1;
@@ -148,9 +148,9 @@ class Frame
   boolean checkRighttWallCollision()
   {
     boolean collide     = false;
-    int r               = ball.getRadius();
-    float ballX         = ball.getX();
-    float ballY         = ball.getY();
+    int     radius      = ball.getRadius();
+    float   ballX       = ball.getX();
+    float   ballY       = ball.getY();
 
     // Right wall
     if ( ballX >= getRightX())                    // checking collision with right wall
@@ -158,11 +158,11 @@ class Frame
       ball.xDirection = -ball.xDirection;
       collide = true;
 
-      if ( ballY < ( getTopY()) + r)           // Check if the ball hit the Top Right Edge
+      if ( ballY < ( getTopY()) + radius)           // Check if the ball hit the Top Right Edge
       {
         ball.xDirection = -1;
         ball.yDirection = +1;
-      }
+      } 
 
       ball.move();
     }

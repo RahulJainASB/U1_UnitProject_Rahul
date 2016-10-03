@@ -7,9 +7,9 @@ boolean checkRectCircleCollision(float x1, float y1, float x2, float y2, float x
 {
   boolean collide = true;  
   if ( (x < (x1 - r)) || 
-    (x > (x2 + r)) || 
-    (y < (y1 - r)) ||
-    (y > (y2 + r)) )
+       (x > (x2 + r)) || 
+       (y < (y1 - r)) ||
+       (y > (y2 + r)) )
   {
     collide = false;    // No collision
   }
@@ -21,15 +21,15 @@ boolean checkRectCircleCollision(float x1, float y1, float x2, float y2, float x
 //
 // Checks if a rect(x3, y3, x4, y4) collides with a rectangle (x1, y1, x2, y2)
 //
-boolean checkRectRectCollision(  float x1, float y1, float x2, float y2, 
-  float x3, float y3, float x4, float y4)
+boolean checkRectRectCollision( float x1, float y1, float x2, float y2, 
+                                float x3, float y3, float x4, float y4)
 {
   boolean collide = true;
 
   if ( (x2 < x3) || 
-    (x1 > x4) || 
-    (y2 < y3) ||
-    (y1 > y4) )
+       (x1 > x4) || 
+       (y2 < y3) ||
+       (y1 > y4) )
   {
     collide = false;    // No collision
   }
@@ -63,7 +63,8 @@ int getRectCircleSideCollided(float x1, float y1, float x2, float y2, float x, f
 }
 
 
-// This function calculates the distance between two points
+// This function calculates the distance between two points and returns that distance
+//
 float pointPointDistance( float x1, float y1, float x0, float y0)
 {
   // Distance of point (x0, y0) from point (x1, y1)
@@ -75,7 +76,8 @@ float pointPointDistance( float x1, float y1, float x0, float y0)
 }
 
 
-// This function calculates the prependicular distance of a point from a line
+// This function calculates the prependicular distance of a point from a line and returns that distance
+//
 float pointLineDistance( float x1, float y1, float x2, float y2, float x0, float y0)
 {
   // Distance of point (x0, y0) from line defined by (x1, y1) and (x2, y2)

@@ -46,17 +46,17 @@ class Brick
 
   void setBrickPosition(float xPos, float yPos, int w)
   {
-    x = xPos;
-    y = yPos;
-    brickWidth = w;
+    x           = xPos;
+    y           = yPos;
+    brickWidth  = w;
   }
-  void  setVisibility(boolean f)
+  void  setVisibility(boolean showBrick)
   {
-    amIVisible = f;
+    amIVisible = showBrick;
   }
-  void  setStrength(int j)
+  void  setStrength(int brickStrength)
   {
-    counter = j;
+    counter = brickStrength;
   }
 
 
@@ -64,7 +64,7 @@ class Brick
   boolean checkBallCollision()
   {
     boolean collide     = false;
-    int r               = ball.getRadius();
+    int radius          = ball.getRadius();
     float ballX         = ball.getX();
     float ballY         = ball.getY();
 
@@ -75,9 +75,9 @@ class Brick
 
     int sideCollided = 0;
 
-    if ( checkRectCircleCollision(   x, y, (x+ brickWidth), (y + brickHeight), ballX, ballY, r) == true )
+    if ( checkRectCircleCollision(   x, y, (x+ brickWidth), (y + brickHeight), ballX, ballY, radius) == true )
     {
-      sideCollided = getRectCircleSideCollided( x, y, (x+ brickWidth), (y + brickHeight), ballX, ballY, r);
+      sideCollided = getRectCircleSideCollided( x, y, (x+ brickWidth), (y + brickHeight), ballX, ballY, radius);
     }
 
     if ( sideCollided == 0 )

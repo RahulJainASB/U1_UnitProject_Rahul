@@ -47,15 +47,15 @@ class Collision_Checker
     // As we may have to delete gifts that have hit the bat or floor, loop backwards so items can be removed.
     for (int i = giftsList.size() - 1; i >= 0; i--) 
     {
-      Gift g = giftsList.get(i);
-      boolean collide = g.checkCollisionWithBat();
+      Gift gift = giftsList.get(i);
+      boolean collide = gift.checkCollisionWithBat();
 
       if ( collide == true)
       {
         giftsList.remove(i);
       } else
       {
-        collide = g.checkCollisionWithFloor();
+        collide = gift.checkCollisionWithFloor();
         if ( collide == true)
         {
           giftsList.remove(i);

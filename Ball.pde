@@ -13,7 +13,7 @@ class Ball
 {
   float   x;
   float   y;
-  int     r;
+  int     radius;
   float   xSpeed;
   float   ySpeed;
   float   xDirection;
@@ -29,7 +29,7 @@ class Ball
   {
     x               = 500;
     y               = 500;
-    r               = 30;
+    radius          = 30;
     xSpeed          = 5;
     ySpeed          = 5; 
     xDirection      = 1;
@@ -40,7 +40,7 @@ class Ball
   void draw()
   {
     fill(255);
-    ellipse(x, y, r, r);
+    ellipse(x, y, radius, radius);
   }
 
   // Move the ball
@@ -60,6 +60,6 @@ class Ball
   }
   int getRadius()
   {
-    return r;
+    return radius;
   }
 } //end of class Ball

@@ -40,6 +40,7 @@ class Button {
     writeText();
   }
 
+  // Writes the button text
   void writeText()
   {
     if ( rectOver) 

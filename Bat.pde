@@ -59,16 +59,16 @@ class Bat
   {    
     if ( testBat == 1)
     {
-      x = ball.x + (ball.r/2);  // Testing left edge scenario
+      x = ball.getX() + (ball.getRadius()/2);  // Testing left edge scenario
     } else if ( testBat == 2)
     {
-      float x1 = ball.x;    
+      float x1 = ball.getX();    
       x = x1 - (batWidth/2);
       if ( x < 0 )
         x = 0;
     } else
     {
-      x = ball.x - batWidth - (ball.r/2);  // Testing right edge scenario
+      x = ball.getX() - batWidth - (ball.getRadius()/2);  // Testing right edge scenario
     }
   }
 
@@ -105,19 +105,19 @@ class Bat
     float batRightX     = bat.getBottomRightX();
     float batTopY       = bat.getTopLeftY();
     float batBottomY    = bat.getBottomRightY();
-    int r               = ball.getRadius();
+    int   radius        = ball.getRadius();
     float ballX         = ball.getX();
     float ballY         = ball.getY();
     boolean stopChecking = false;
 
 
     // Is the ball within striking distance of the bat?
-    collide = pointInsideRect( (batLeftX - r), (batTopY - r), (batRightX + r), batBottomY, ballX, ballY);  // Commented as ball seems a bit far away
+    collide = pointInsideRect( (batLeftX - radius), (batTopY - radius), (batRightX + radius), batBottomY, ballX, ballY);  // Commented as ball seems a bit far away
 
     if ( collide == true )      // Ball is close to the bat. Check which side the ball is hitting the bat
     {
       // Check the left corner hit 
-      if ( (stopChecking == false) && (pointPointDistance(batLeftX, batTopY, ballX, ballY) <= r))
+      if ( (stopChecking == false) && (pointPointDistance(batLeftX, batTopY, ballX, ballY) <= radius))
       {
         ball.xDirection = -1;
         ball.yDirection = -1;
@@ -125,7 +125,7 @@ class Bat
       }
 
       // Check the right corner hit 
-      if (  (stopChecking == false) && (pointPointDistance(batRightX, batTopY, ballX, ballY) <= r))
+      if (  (stopChecking == false) && (pointPointDistance(batRightX, batTopY, ballX, ballY) <= radius))
       {
         ball.xDirection  = +1;
         ball.yDirection  = -1;
@@ -133,14 +133,14 @@ class Bat
       }
 
       // Check if collision is with top part of the bat 
-      if (  (stopChecking == false) && (pointInsideRect( batLeftX, (batTopY - (r/2)), batRightX, batBottomY, ballX, ballY) == true) )
+      if (  (stopChecking == false) && (pointInsideRect( batLeftX, (batTopY - (radius/2)), batRightX, batBottomY, ballX, ballY) == true) )
       {
         ball.yDirection  = -ball.yDirection;
         stopChecking     = true;
       }
 
       // Check if collision is with left part of the bat 
-      if (  (stopChecking == false) && (pointInsideRect( (batLeftX - (r/2)), batTopY, batRightX, batBottomY, ballX, ballY) == true) )
+      if (  (stopChecking == false) && (pointInsideRect( (batLeftX - (radius/2)), batTopY, batRightX, batBottomY, ballX, ballY) == true) )
       {
         ball.xDirection  = -1;
         ball.yDirection  = -1;
@@ -148,7 +148,7 @@ class Bat
       }
 
       // Check if collision is with right part of the bat 
-      if (  (stopChecking == false) && (pointInsideRect( batLeftX, batTopY, (batRightX + (r/2)), batBottomY, ballX, ballY) == true) )
+      if (  (stopChecking == false) && (pointInsideRect( batLeftX, batTopY, (batRightX + (radius/2)), batBottomY, ballX, ballY) == true) )
       {
         ball.xDirection = +1;
         ball.yDirection = -1;

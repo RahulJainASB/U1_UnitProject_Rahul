@@ -107,13 +107,13 @@ class Brick_Manager
   {
     boolean increaseLevel = true;    // initialized value
 
-    int j = scoreboard.level;        // check the lines based on the level
-    if ( j > brickLine.length)        // if level is more than brickline, then reset j to brickline's length
+    int numberOfBrickLines = scoreboard.level;        // check the lines based on the level
+    if ( numberOfBrickLines > brickLine.length)        // if level is more than brickline, then reset j to brickline's length
     {
-      j = brickLine.length;
+      numberOfBrickLines = brickLine.length;
     }
 
-    for (int i = 0; i < j; i++)
+    for (int i = 0; i < numberOfBrickLines; i++)
     {
       if ( brickLine[i].getVisibility() == true)
       {

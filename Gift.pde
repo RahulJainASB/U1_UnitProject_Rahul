@@ -3,18 +3,19 @@
 class Gift
 {
   int      giftType;    // 1: Life,  2: Bomb, 3: ScoreBonus
-  float    x, y;
+  float    x, y;        // X and Y position
   PImage   im;
-  float    w, h;
+  float    giftWidth;
+  float    giftHeight;
 
-  Gift(int j)
+  Gift(int kindOfGift)
   {
-    giftType = j;
+    giftType = kindOfGift;
     if ( (giftType < 1) || (giftType > 3) )
       giftType = 1;
 
-    w = h = 75;
-    x = random((frame.getLeftX()+w), (frame.getRightX()-w));
+    giftWidth = giftHeight = 75;
+    x = random( (frame.getLeftX() + giftWidth), (frame.getRightX() - giftWidth) );
     y = frame.getTopY();
 
     switch(giftType)
@@ -34,7 +35,7 @@ class Gift
 
   void draw()
   {
-    image(im, x, y, w, h);
+    image(im, x, y, giftWidth, giftHeight);
     y = y + 10;
   }
 
@@ -43,7 +44,7 @@ class Gift
   boolean checkCollisionWithBat()
   {
     boolean collide = checkRectRectCollision(  bat.getTopLeftX(), bat.getTopLeftY(), bat.getBottomRightX(), bat.getBottomRightY(), 
-      x, y, x+w, y+h);
+                                               x, y, x+giftWidth, y+giftHeight);
 
     if ( collide == true )
     {
@@ -69,7 +70,7 @@ class Gift
     boolean collide     = false;
     float wallBottomY   = frame.getBottomY();
 
-    if ( (y+h) >=  wallBottomY)
+    if ( (y+giftHeight) >=  wallBottomY)
     {
       collide = true;
     }

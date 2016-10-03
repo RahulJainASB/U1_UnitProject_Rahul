@@ -58,20 +58,20 @@ class Brick_Line
     }
   }
 
-  void setBricksStrength(int j)
+  void setBricksStrength(int brickStrength)
   {    
     for ( int i = 0; i < bricks.length; i++)
     {
-      bricks[i].setStrength(j);
+      bricks[i].setStrength(brickStrength);
     }
   }
 
-  void  setVisibility(boolean f)
+  void  setVisibility(boolean showBrick)
   {
-    amIVisible = f;
+    amIVisible = showBrick;
     for (int i = 0; i < bricks.length; i++)
     {
-      bricks[i].setVisibility(f);
+      bricks[i].setVisibility(showBrick);
     }
   }
 
@@ -86,7 +86,7 @@ class Brick_Line
   boolean checkBallCollision()
   {
     boolean collide     = false;
-    int r               = ball.getRadius();
+    int radius          = ball.getRadius();
     float ballX         = ball.getX();
     float ballY         = ball.getY();
 
@@ -94,7 +94,7 @@ class Brick_Line
       return collide;
 
     // check if ball is above or below the brick line. If so, ignore.
-    if ( (abs(y - ballY) > r ) || ((abs( ballY - (y+brickHeight)) > r )) )
+    if ( (abs(y - ballY) > radius ) || ((abs( ballY - (y+brickHeight)) > radius )) )
     {
       collide = false;
     } else
