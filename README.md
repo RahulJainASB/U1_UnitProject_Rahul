@@ -7,6 +7,6 @@
 <P>I really like playing brick breaker, and I have played many versions of it, so I thought it would be nice to create my own brick breaker game to play.</P>
 
 <h2>Screenshots</h2>
-<img src = http://imgur.com/FcBTCLD>
-<img src = http://imgur.com/qZ6tVPW>
-<img scr = http://imgur.com/LjszZkf>
+<img src = http://i.imgur.com/FcBTCLD.png>
+<img src = http://i.imgur.com/qZ6tVPW.png>
+<img scr = http://i.imgur.com/LjszZkf.png>
