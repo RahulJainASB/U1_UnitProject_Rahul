@@ -9,4 +9,3 @@
 <h2>Screenshots</h2>
 <img src = http://i.imgur.com/FcBTCLD.png>
 <img src = http://i.imgur.com/qZ6tVPW.png>
-<img scr = http://i.imgur.com/LjszZkf.png>
